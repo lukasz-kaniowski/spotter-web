@@ -5,7 +5,12 @@ angular.module('spotterWebApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }];
+    },
+      {
+        title: 'Missions',
+        link: '/missions'
+      }
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;

@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Mission = require('../api/mission/mission.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -27,6 +28,13 @@ Thing.find({}).remove(function() {
   },{
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
+  });
+});
+
+Mission.find({}).remove(function() {
+  Mission.create({
+    name : 'Mission 1',
+    info : 'Super extra misja'
   });
 });
 
