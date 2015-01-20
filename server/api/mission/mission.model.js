@@ -6,6 +6,8 @@ var mongoose = require('mongoose'),
 var MissionSchema = new Schema({
   title: String,
   company: String,
+  dueDate: Date,
+  price: Number,
   address: {
     coordinates: []
   }
