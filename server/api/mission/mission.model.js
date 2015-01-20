@@ -1,12 +1,15 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
 var MissionSchema = new Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  title: String,
+  company: String,
+  address: {
+    coordinates: []
+  }
 });
+MissionSchema.index({address: {coordinates: '2d'}});
 
 module.exports = mongoose.model('Mission', MissionSchema);

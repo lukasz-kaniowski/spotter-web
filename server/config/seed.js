@@ -33,7 +33,7 @@ Thing.find({}).remove(function() {
 
 Mission.find({}).remove(function() {
   Mission.create({
-    name : 'Mission 1',
+    title : 'Mission 1',
     info : 'Super extra misja'
   });
 });

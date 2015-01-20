@@ -12,7 +12,7 @@ describe('GET /api/missions', function () {
   });
 
   it('should respond with JSON array', function (done) {
-    Mission.create({name: 'Some Mission'})
+    Mission.create({title: 'Some Mission'})
       .then(function () {
         request(app)
           .get('/api/missions')
@@ -22,7 +22,7 @@ describe('GET /api/missions', function () {
             if (err) return done(err);
             res.body.should.be.instanceof(Array);
             res.body.length.should.be.equal(1);
-            res.body[0].name.should.be.equal('Some Mission');
+            res.body[0].title.should.be.equal('Some Mission');
             done();
           });
 
