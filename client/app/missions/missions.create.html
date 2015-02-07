@@ -5,16 +5,30 @@
 
 
   <form class="thing-form">
-    <label>New Mission</label>
+    <h2>Nowa misja</h2>
 
     <p class="input-group">
+    <h3>Opis</h3>
       <input type="text" class="form-control" placeholder="Tytul" ng-model="newMission.title">
       <input type="text" class="form-control" placeholder="Firma" ng-model="newMission.company">
       <input type="number" class="form-control" placeholder="Cena" ng-model="newMission.price">
       <div text-angular ng-model="newMission.instructions"></div>
     </p>
+
+    <p>
+      <h3>Zadania</h3>
+      <ul>
+        <li ng-repeat="task in newMission.tasks">{{task.type}} {{task.title}}</li>
+      </ul>
+      <div>
+
+        <button type="button" class="btn btn-primary" ng-click="addTask()">Dodaj nowe zadanie</button>
+      </div>
+
+
+    </p>
     <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary btn-block" ng-click="create()">Create</button>
+        <button type="submit" class="btn btn-success btn-block" ng-click="create()">Zapisz</button>
       </span>
   </form>
 </div>

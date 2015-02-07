@@ -8,19 +8,27 @@ angular.module('spotterWebApp')
       $scope.missions = response.data;
     });
   })
-  .controller('MissionsCreateCtrl', function ($scope, $http, $state) {
+  .controller('MissionsCreateCtrl', function ($scope, $http, $state, taskModal) {
 
-    $scope.newMission = {};
+    $scope.newMission = {
+      tasks: []
+    };
 
     $scope.create = function () {
       $http.post('/api/missions', $scope.newMission).then(function () {
         $state.go('missions');
       });
-    }
+    };
+
+    $scope.addTask = function () {
+      taskModal.open().result.then(function (task) {
+        $scope.newMission.tasks.push(task);
+      });
+    };
   })
   .controller('MissionDetailsCtrl', function ($scope, $http, $stateParams) {
 
-    $http.get('/api/missions/' +$stateParams.missionId).then(function (response) {
+    $http.get('/api/missions/' + $stateParams.missionId).then(function (response) {
       console.log(response);
       $scope.mission = response.data;
     });

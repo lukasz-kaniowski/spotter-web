@@ -3,7 +3,7 @@
 
 <div class="container">
 
-
+  <h2>Detale misji</h2>
   <dl class="dl-horizontal">
     <dt>Tytul</dt>
     <dd ng-bind="mission.title"></dd>
@@ -13,6 +13,14 @@
     <dd ng-bind="mission.price"></dd>
     <dt>Instrukcje</dt>
     <dd ng-bind-html="mission.instructions"></dd>
+    <dt>Zadania</dt>
+    <dd>
+      <ul>
+        <li ng-repeat="task in mission.tasks">
+          {{task.title}} {{task.type}}
+        </li>
+      </ul>
+    </dd>
   </dl>
 
 </div>

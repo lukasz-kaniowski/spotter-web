@@ -3,6 +3,8 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+var TaskSchema = new Schema({ title: String, type: String, data: {} });
+
 var MissionSchema = new Schema({
   title: String,
   company: String,
@@ -10,9 +12,8 @@ var MissionSchema = new Schema({
   price: Number,
   status: String, //moze enum
   instructions: String, //html
-
+  tasks: [TaskSchema],
   // todo lkan; adres musi byc lista lokacji
-  tasks: [],
   address: {
     coordinates: []
   }
