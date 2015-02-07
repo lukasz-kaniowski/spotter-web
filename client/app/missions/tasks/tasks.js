@@ -17,7 +17,8 @@ angular.module('spotterWebApp')
   .controller('TasksCreateCtrl', function ($scope, $modalInstance) {
     $scope.types = [
       {label: 'Pytanie z odpowiedzia', value: 'text'},
-      {label: 'Pytanie Tak/Nie', value: 'yes/no'}
+      {label: 'Pytanie Tak/Nie', value: 'yes/no'},
+      {label: 'Zdjecie', value: 'picture'}
     ];
 
     $scope.task = {};
