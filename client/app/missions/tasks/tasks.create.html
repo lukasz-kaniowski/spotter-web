@@ -2,13 +2,22 @@
   <h3 class="modal-title">Nowe Zadania</h3>
 </div>
 <div class="modal-body">
-  <ul>
-    <li ng-repeat="item in items">
-      {{item}}
-    </li>
-  </ul>
-  <!--Selected: <b>{{ selected.item }}</b>-->
+  <select ng-model="task.type">
+    <option ng-repeat="type in types" value="{{type.value}}">{{type.label}}</option>
+  </select>
+
+  <div ng-show="task.type === 'text'">
+    <input type="text" class="form-control" placeholder="Pytanie" ng-model="task.title">
+  </div>
+
+  <div ng-show="task.type === 'yes/no'">
+    <input type="text" class="form-control" placeholder="Pytanie" ng-model="task.title">
+  </div>
+
 </div>
+
+
+
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ok()">OK</button>
   <button class="btn btn-warning" ng-click="cancel()">Cancel</button>

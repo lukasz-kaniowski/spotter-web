@@ -15,10 +15,15 @@ angular.module('spotterWebApp')
     };
   })
   .controller('TasksCreateCtrl', function ($scope, $modalInstance) {
-    $scope.items = ['A', 'B'];
+    $scope.types = [
+      {label: 'Pytanie z odpowiedzia', value: 'text'},
+      {label: 'Pytanie Tak/Nie', value: 'yes/no'}
+    ];
+
+    $scope.task = {};
 
     $scope.ok = function () {
-      $modalInstance.close({type: 'text', title: 'nowe zadanie'});
+      $modalInstance.close($scope.task);
     };
 
     $scope.cancel = function () {
