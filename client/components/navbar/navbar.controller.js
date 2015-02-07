@@ -2,13 +2,18 @@
 
 angular.module('spotterWebApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    },
+    $scope.menu = [
       {
-        title: 'Missions',
+        'title': 'Glowna',
+        'link': '/'
+      },
+      {
+        title: 'Misje',
         link: '/missions'
+      },
+      {
+        title: 'Lokacje',
+        link: '/locations'
       }
     ];
 
@@ -17,12 +22,12 @@ angular.module('spotterWebApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
-    $scope.logout = function() {
+    $scope.logout = function () {
       Auth.logout();
       $location.path('/login');
     };
 
-    $scope.isActive = function(route) {
+    $scope.isActive = function (route) {
       return route === $location.path();
     };
   });
