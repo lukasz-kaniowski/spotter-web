@@ -8,6 +8,11 @@ var MissionSchema = new Schema({
   company: String,
   dueDate: Date,
   price: Number,
+  status: String, //moze enum
+  instructions: String, //html
+
+  // todo lkan; adres musi byc lista lokacji
+  tasks: [],
   address: {
     coordinates: []
   }

@@ -8,9 +8,10 @@
     <label>New Mission</label>
 
     <p class="input-group">
-      <input type="text" class="form-control" placeholder="Name" ng-model="newMission.title">
-      <input type="number" class="form-control" placeholder="Price" ng-model="newMission.price">
-
+      <input type="text" class="form-control" placeholder="Tytul" ng-model="newMission.title">
+      <input type="text" class="form-control" placeholder="Firma" ng-model="newMission.company">
+      <input type="number" class="form-control" placeholder="Cena" ng-model="newMission.price">
+      <div text-angular ng-model="newMission.instructions"></div>
     </p>
     <span class="input-group-btn">
         <button type="submit" class="btn btn-primary btn-block" ng-click="create()">Create</button>
