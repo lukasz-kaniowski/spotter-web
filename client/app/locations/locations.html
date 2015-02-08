@@ -4,14 +4,28 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Lokacje</h1>
-      <ul class="" >
+      <ul class="">
         <li ng-repeat="location in locations">
           {{location}}
         </li>
       </ul>
     </div>
   </div>
-  <a class="btn btn-primary btn-block" ui-sref="locationAdd" >Dodaj</a>
+
+  <div class="row">
+    <col-lg-12>
+
+      <!--<div class="button" ng-file-select ng-model="files">Upload ussing model $watch</div>-->
+      <button class="button btn btn-success" ng-file-select ng-file-change="upload($files)" accept=".csv">Wgraj lokacje z csv</button>
+      <!--<h2>Drop File:</h2>-->
+
+      <!--<div ng-file-drop ng-model="file" class="drop-box"-->
+           <!--drag-over-class="dragover" ng-multiple="false" allow-dir="false"-->
+           <!--accept=".csv">Podrzuc swoj csv-->
+      <!--</div>-->
+      <!--<div ng-no-file-drop>Upload plikow nie mozliwy w tej przegladarce</div>-->
+    </col-lg-12>
+  </div>
 </div>
 
 <footer class="footer">

@@ -2,6 +2,9 @@
 
 var _ = require('lodash');
 var Location = require('./location.model');
+var multiparty = require('multiparty');
+
+
 
 // Get list of locations
 exports.index = function(req, res) {
@@ -9,6 +12,16 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.json(200, locations);
   });
+};
+
+exports.upload = function(req, res){
+  var form = new multiparty.Form();
+
+  form.parse(req, function(err, fields, files) {
+    console.log(files);
+    return res.json(200);
+  });
+
 };
 
 // Get a single location
