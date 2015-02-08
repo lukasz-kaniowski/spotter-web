@@ -35,7 +35,9 @@ Thing.find({}).remove(function() {
 Mission.find({}).remove(function() {
   Mission.create({
     title : 'Mission 1',
-    info : 'Super extra misja'
+    company : 'Tesco',
+    price: 10,
+    instructions: 'Zeby wykonac misje musisz wykonac 5 zadan. <br/> Powodzenia!'
   });
 });
 
