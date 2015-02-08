@@ -8,6 +8,7 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Mission = require('../api/mission/mission.model');
+var Location = require('../api/location/location.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -54,4 +55,8 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Location.find({}).remove(function () {
+  console.log('Locations removed');
 });

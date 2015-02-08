@@ -6,7 +6,9 @@ var mongoose = require('mongoose'),
 var LocationSchema = new Schema({
   name: String,
   info: String,
-  active: Boolean
+  active: Boolean,
+  geoData: {},
+  csv: {}
 });
 
 module.exports = mongoose.model('Location', LocationSchema);

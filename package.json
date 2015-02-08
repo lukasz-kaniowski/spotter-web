@@ -8,6 +8,7 @@
     "compression": "~1.0.1",
     "connect-mongo": "^0.4.1",
     "cookie-parser": "~1.0.1",
+    "csv-parse": "0.0.6",
     "ejs": "~0.8.4",
     "errorhandler": "~1.0.0",
     "express": "~4.0.0",
@@ -19,14 +20,17 @@
     "mongoose": "~3.8.8",
     "morgan": "~1.0.0",
     "multiparty": "^4.1.1",
+    "node-geocoder": "^2.14.0",
     "passport": "~0.2.0",
     "passport-facebook": "latest",
     "passport-google-oauth": "latest",
     "passport-local": "~0.1.6",
+    "q": "^1.1.2",
     "serve-favicon": "~2.0.1",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^2.0.2"
+    "socketio-jwt": "^2.0.2",
+    "stream-transform": "0.0.6"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

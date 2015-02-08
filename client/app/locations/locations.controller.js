@@ -1,8 +1,16 @@
 'use strict';
 
 angular.module('spotterWebApp')
-  .controller('LocationsCtrl', function ($scope, $upload) {
-    $scope.locations = ['a', 'b'];
+  .controller('LocationsCtrl', function ($scope, $upload, $http) {
+
+    function refreshLocations() {
+      $http.get('/api/locations').then(function (response) {
+        $scope.locations = response.data;
+      });
+    }
+
+    refreshLocations();
+
     //
     //$scope.$watch('files', function () {
     //  console.log('------- files');
@@ -23,6 +31,7 @@ angular.module('spotterWebApp')
             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (data, status, headers, config) {
             console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+            setTimeout(refreshLocations, 300);
           });
         }
       }

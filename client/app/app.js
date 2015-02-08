@@ -8,7 +8,8 @@ angular.module('spotterWebApp', [
   'ui.router',
   'ui.bootstrap',
   'textAngular',
-  'angularFileUpload'
+  'angularFileUpload',
+  'ngTable'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

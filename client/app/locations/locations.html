@@ -4,11 +4,20 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Lokacje</h1>
-      <ul class="">
-        <li ng-repeat="location in locations">
-          {{location}}
-        </li>
-      </ul>
+      <table ng-table class="table">
+        <tr ng-repeat="location in locations" ng-class="{error: location.geoData.length !== 1}">
+
+          <td data-title="'Csv adres'">
+            {{location.csv.street}}, {{location.csv.zipcode}} {{location.csv.city}}
+          </td>
+          <td data-title="'Geo Adres'">
+            <div ng-repeat="address in location.geoData">
+              ul. {{address.streetName}} {{address.streetNumber}}, {{address.zipcode}} {{address.city}}
+            </div>
+          </td>
+          <td data-title="'Geo Data Count'">{{location.geoData.length}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 
@@ -16,7 +25,7 @@
     <col-lg-12>
 
       <!--<div class="button" ng-file-select ng-model="files">Upload ussing model $watch</div>-->
-      <button class="button btn btn-success" ng-file-select ng-file-change="upload($files)" accept=".csv">Wgraj lokacje z csv</button>
+      <button class="button btn btn-success" ng-file-select ng-file-change="upload($files)" >Wgraj lokacje z csv</button>
       <!--<h2>Drop File:</h2>-->
 
       <!--<div ng-file-drop ng-model="file" class="drop-box"-->

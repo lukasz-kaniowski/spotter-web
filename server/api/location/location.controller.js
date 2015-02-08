@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Location = require('./location.model');
 var multiparty = require('multiparty');
+var geocoding = require('./location.geocoding');
 
 
 
@@ -19,6 +20,7 @@ exports.upload = function(req, res){
 
   form.parse(req, function(err, fields, files) {
     console.log(files);
+    geocoding.geocode(files.file[0].path);
     return res.json(200);
   });
 
