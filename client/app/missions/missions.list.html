@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Missions:</h1>
+      <h2 class="page-header">Misje</h2>
       <ul class="" >
         <li ng-repeat="mission in missions">
           <a ui-sref="missionDetails({missionId: mission._id})">{{mission.title}}{{mission.price}}{{mission.dueDate}}</a>
@@ -13,7 +13,7 @@
       </ul>
     </div>
   </div>
-  <a class="btn btn-primary btn-block" ui-sref="missionsCreate" >New</a>
+  <a class="btn btn-primary btn-block" ui-sref="missionsCreate" >Dodaj Misje</a>
 </div>
 
 <footer class="footer">
