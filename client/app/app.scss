@@ -15,6 +15,13 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     color: #000;
     padding: 0.2em 0;
 }
+// removing this anoying blue glow
+.ng-table-pager button:focus {
+
+    outline:0px !important;
+    -webkit-appearance:none;
+
+}
 
 // Component styles are injected through grunt
 // injector
