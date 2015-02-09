@@ -9,7 +9,8 @@ angular.module('spotterWebApp', [
   'ui.bootstrap',
   'textAngular',
   'angularFileUpload',
-  'ngTable'
+  'ngTable',
+  'checklist-model'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

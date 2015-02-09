@@ -1,7 +1,9 @@
-Co musi byc zrobione w pierwszej kolejnosci
+Todo
 ===========================================
 
-* Podpinanie lokacji do misji
+Priority 1
+----------
+
 * Startowanie misji
 * Edycja misji
 * Usuwanie misji
@@ -16,11 +18,23 @@ Co musi byc zrobione w pierwszej kolejnosci
 * Misje, Lokacje powinny byc podczepione pod konkretnego klienta
   
 Bugi
-=====
+-----
 
 * !!! Wysypuje sie jak sie drugi raz podgrywa liste lokacji
 
 Nice to have
-============
+------------
 
 * dodac nodemon zeby powstal jak padnie 
+
+
+In Progress
+=======================================
+
+* Podpinanie lokacji do misji (zostal zrobic maly refaktoring, opis w todo lkan;)
+
+Done
+=======================================
+
+
+

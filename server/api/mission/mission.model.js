@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var TaskSchema = new Schema({ title: String, type: String, data: {} });
+var TaskSchema = new Schema({title: String, type: String, data: {}});
 
 var MissionSchema = new Schema({
   title: String,
@@ -16,7 +16,8 @@ var MissionSchema = new Schema({
   // todo lkan; adres musi byc lista lokacji
   address: {
     coordinates: []
-  }
+  },
+  locations: [{type: Schema.Types.ObjectId, ref: 'Location'}]
 });
 MissionSchema.index({address: {coordinates: '2d'}});
 
