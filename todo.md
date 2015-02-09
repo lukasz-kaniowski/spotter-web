@@ -4,6 +4,7 @@ Todo
 Priority 1
 ----------
 
+* Zablokowac mozliwosc rejestracji, jakos zrobic sie adminem
 * Startowanie misji
 * Edycja misji
 * Usuwanie misji
