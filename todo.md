@@ -5,6 +5,7 @@ Co musi byc zrobione w pierwszej kolejnosci
 * Startowanie misji
 * Edycja misji
 * Usuwanie misji
+* Walidacja lokacji i misji
 * Potwierdzanie poprawnosci wczytanych lokacji
 * Progress misji
   - ktore punkty zostaly juz zrobione
