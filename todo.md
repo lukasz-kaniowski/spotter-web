@@ -33,8 +33,10 @@ In Progress
 
 * Podpinanie lokacji do misji (zostal zrobic maly refaktoring, opis w todo lkan;)
 
+
 Done
 =======================================
 
+* Wrzucic to na heroku
 
 
