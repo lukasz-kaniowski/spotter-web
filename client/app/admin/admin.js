@@ -7,5 +7,11 @@ angular.module('spotterWebApp')
         url: '/admin',
         templateUrl: 'app/admin/admin.html',
         controller: 'AdminCtrl'
-      });
+      })
+      .state('user-create', {
+        url: '/users/create',
+        templateUrl: 'app/admin/create/create.html',
+        controller: 'UserCreateCtrl'
+      })
+    ;
   });
