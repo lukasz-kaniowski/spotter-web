@@ -32,5 +32,11 @@ angular.module('spotterWebApp')
       console.log(response);
       $scope.mission = response.data;
     });
+
+    $scope.start = function () {
+      $http.patch('/api/missions/' + $stateParams.missionId + '/state', {state: 'active'}).then(function (response) {
+        $scope.mission = response.data;
+      })
+    }
   })
 ;

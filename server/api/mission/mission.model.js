@@ -9,8 +9,9 @@ var MissionSchema = new Schema({
   title: String,
   company: String,
   dueDate: Date,
+  startDate: Date,
   price: Number,
-  status: String, //moze enum
+  state: {type: String, enum: 'new active booked closed'.split(' '), default: 'new'},
   instructions: String, //html
   tasks: [TaskSchema],
   // todo lkan; adres musi byc lista lokacji

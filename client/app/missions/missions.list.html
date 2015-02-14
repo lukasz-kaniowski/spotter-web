@@ -8,7 +8,7 @@
       <h2 class="page-header">Misje</h2>
       <ul class="" >
         <li ng-repeat="mission in missions">
-          <a ui-sref="missionDetails({missionId: mission._id})">{{mission.title}}{{mission.price}}{{mission.dueDate}}</a>
+          <a ui-sref="missionDetails({missionId: mission._id})">{{mission.title}}{{mission.price}}{{mission.dueDate}}{{mission.state}}</a>
         </li>
       </ul>
     </div>
