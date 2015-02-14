@@ -7,7 +7,10 @@ var validations = require('./mission.validations');
 
 // Get list of missions
 exports.index = function(req, res) {
-  Mission.find(function (err, missions) {
+  Joi.validate(req.query, validations.listFilter, function (err, result) {
+    if(err) { return handleError(res, err); }
+  });
+  Mission.find(req.query, function (err, missions) {
     if(err) { return handleError(res, err); }
     return res.json(200, missions);
   });

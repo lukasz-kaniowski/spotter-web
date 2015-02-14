@@ -4,7 +4,6 @@ Todo
 Priority 1
 ----------
 
-* Startowanie misji
 * Edycja misji
 * Usuwanie misji
 * Walidacja lokacji i misji
@@ -39,5 +38,7 @@ Done
 
 * Wrzucic to na heroku
 * Zablokowac mozliwosc rejestracji, jakos zrobic sie adminem
+* Startowanie misji
+* Filtrowanie misji przez state
 
 
