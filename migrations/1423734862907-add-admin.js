@@ -18,7 +18,6 @@ exports.up = function (next) {
     password: 'test123',
     role: 'admin'
   }, function (err, result) {
-    console.log('error', err);
     next(err);
   });
 

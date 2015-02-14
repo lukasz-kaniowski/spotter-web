@@ -46,3 +46,13 @@ After app modification run
         grunt build
 Then deploy with
         grunt buildcontrol:heroku
+        
+Database connection
+-------------------
+
+mongo ds037451.mongolab.com:37451/heroku_app33869426 -u heroku_app33869426 -p o5os1me1ph5tgm1etua2nqjsm7
+
+Database migration
+-------------------
+
+    $ cd dist; heroku run migrate up
