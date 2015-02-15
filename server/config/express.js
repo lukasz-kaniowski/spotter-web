@@ -15,6 +15,7 @@ var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
+var cors = require('cors');
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -22,6 +23,7 @@ module.exports = function(app) {
   app.set('views', config.root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
+  app.use(cors());
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
@@ -36,7 +38,7 @@ module.exports = function(app) {
   }
 
   if ('development' === env || 'test' === env) {
-    app.use(require('connect-livereload')());
+    app.use(require('connect-livereload')({port: 35730}));
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));
     app.set('appPath', 'client');
