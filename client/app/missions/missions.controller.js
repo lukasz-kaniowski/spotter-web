@@ -26,7 +26,7 @@ angular.module('spotterWebApp')
       });
     };
   })
-  .controller('MissionDetailsCtrl', function ($scope, $http, $stateParams) {
+  .controller('MissionDetailsCtrl', function ($scope, $http, $stateParams, $state) {
 
     $http.get('/api/missions/' + $stateParams.missionId).then(function (response) {
       console.log(response);
@@ -37,6 +37,12 @@ angular.module('spotterWebApp')
       $http.patch('/api/missions/' + $stateParams.missionId + '/state', {state: 'active'}).then(function (response) {
         $scope.mission = response.data;
       })
-    }
+    };
+
+    $scope.delete = function () {
+      $http.delete('/api/missions/' + $stateParams.missionId).then(function () {
+        $state.go('missions');
+      })
+    };
   })
 ;
