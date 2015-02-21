@@ -7,7 +7,7 @@ var LocationSchema = new Schema({
   name: String,
   info: String,
   active: Boolean,
-  geoData: {},
+  geoData: [{}],
   csv: {}
 });
 

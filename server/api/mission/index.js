@@ -8,6 +8,7 @@ var router = express.Router();
 
 router.use(auth.isAuthenticated());
 
+router.get('/locations', require('./locations/missions-locations.controller').index);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);

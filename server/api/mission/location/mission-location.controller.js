@@ -13,9 +13,7 @@ exports.show = function(req, res) {
   });
 };
 
-// Creates a new mission in the DB.
 exports.create = function(req, res) {
-  console.log('mission locations  controller', req.primaryParams.missionId, req.body.locations);
   Mission.findById(req.primaryParams.missionId, function (err, mission) {
     if(err) { return handleError(res, err); }
     if(!mission) { return res.send(404); }
