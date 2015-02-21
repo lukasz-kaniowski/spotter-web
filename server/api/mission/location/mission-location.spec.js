@@ -4,34 +4,16 @@ var should = require('should');
 var app = require('../../../app');
 var request = require('supertest');
 var Mission = require('./../mission.model');
-var User = require('../../user/user.model');
+var AuthHelper = require('../../../auth/auth.spec.helper');
 
 describe('GET /api/missions/:missionId/locations', function () {
   var token;
-  before(function (done) {
-    User.remove(function() {
-      var user = new User({
-        name: 'Fake User',
-        email: 'test@test.com',
-        password: 'password'
-      });
 
-      user.save(function(err) {
-        if (err) return done(err);
-        request(app)
-          .post('/auth/local')
-          .send({
-            email: 'test@test.com',
-            password: 'password'
-          })
-          .expect(200)
-          .expect('Content-Type', /json/)
-          .end(function (err, res) {
-            console.log('token', res.body.token);
-            token = res.body.token;
-            done();
-          });
-      });
+  before(function (done) {
+
+    AuthHelper.initUser(function (user, tokenRes) {
+      token = tokenRes;
+      done();
     });
 
   });
@@ -45,9 +27,9 @@ describe('GET /api/missions/:missionId/locations', function () {
     Mission.create({title: 'Some Mission'})
       .then(function (mission) {
         request(app)
-          .post('/api/missions/'+mission._id + '/locations')
+          .post('/api/missions/' + mission._id + '/locations')
           .set('authorization', 'Bearer ' + token)
-          .send({locations:[]})
+          .send({locations: []})
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function (err, res) {
