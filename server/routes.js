@@ -19,7 +19,6 @@ module.exports = function(app) {
   app.use('/api/missions', require('./api/mission'));
   app.use('/api/missions/:missionId/locations', passPrimaryParams);
   app.use('/api/missions/:missionId/locations', require('./api/mission/location'));
-  app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
