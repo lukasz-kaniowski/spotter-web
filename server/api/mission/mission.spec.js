@@ -4,8 +4,17 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 var Mission = require('./mission.model');
+var AuthHelper = require('../../auth/auth.spec.helper');
 
 describe('GET /api/missions', function () {
+  var token;
+
+  before(function (done) {
+    AuthHelper.initUser(function (user, tokenRes) {
+      token = tokenRes;
+      done();
+    });
+  });
 
   beforeEach(function (done) {
     Mission.collection.remove(done)
@@ -16,6 +25,7 @@ describe('GET /api/missions', function () {
       .then(function () {
         request(app)
           .get('/api/missions')
+          .set('authorization', 'Bearer ' + token)
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function (err, res) {
