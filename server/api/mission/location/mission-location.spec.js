@@ -6,16 +6,14 @@ var request = require('supertest');
 var Mission = require('./../mission.model');
 var AuthHelper = require('../../../auth/auth.spec.helper');
 
-describe('GET /api/missions/:missionId/locations', function () {
+describe('Mission Location, endpoint: `/api/missions/:missionId/locations`', function () {
   var token;
 
   before(function (done) {
-
     AuthHelper.initUser(function (user, tokenRes) {
       token = tokenRes;
       done();
     });
-
   });
 
 
@@ -23,7 +21,7 @@ describe('GET /api/missions/:missionId/locations', function () {
     Mission.collection.remove(done)
   });
 
-  it('should respond with JSON array', function (done) {
+  it('POST should add save locations for given mission', function (done) {
     Mission.create({title: 'Some Mission'})
       .then(function (mission) {
         request(app)
