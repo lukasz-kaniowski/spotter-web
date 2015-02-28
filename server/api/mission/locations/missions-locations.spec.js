@@ -77,7 +77,8 @@ describe('GET /api/missions/locations', function () {
                 "coordinates": [
                   locations[1].geoData[0].latitude,
                   locations[1].geoData[0].longitude
-                ]
+                ],
+                "id": locations[1].id
               },
               "dueDate": '2015-02-21T16:33:21.000Z',
               "tasks": [],

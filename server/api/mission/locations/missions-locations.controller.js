@@ -25,7 +25,8 @@ function formatMissionsWithLocations(missionsWithLocations) {
           dueDate: mission.dueDate,
           price: mission.price,
           address: {
-            coordinates: getCoordinates(location)
+            coordinates: getCoordinates(location),
+            id: location.id
           }
         }
       );

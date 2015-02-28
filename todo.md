@@ -5,7 +5,6 @@ Priority 1
 ----------
 
 * Edycja misji
-* Usuwanie misji
 * Walidacja lokacji i misji
 * Potwierdzanie poprawnosci wczytanych lokacji
 * Progress misji
@@ -15,6 +14,7 @@ Priority 1
 * Weryfikacja poprawnosci odpowiedzi/zdjec  
 * Raport z wykonania misji
 * Misje, Lokacje powinny byc podczepione pod konkretnego klienta
+* Przejrzec wszystkie endpointy i zabezpieczyc rolami
   
 Bugi
 -----
@@ -25,6 +25,7 @@ Nice to have
 ------------
 
 * dodac nodemon zeby powstal jak padnie 
+* Usuwanie powinno archiwizowac misje
 
 
 In Progress
@@ -40,5 +41,6 @@ Done
 * Zablokowac mozliwosc rejestracji, jakos zrobic sie adminem
 * Startowanie misji
 * Filtrowanie misji przez state
+* Usuwanie misji
 
 
