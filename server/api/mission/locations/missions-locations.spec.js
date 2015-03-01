@@ -26,12 +26,10 @@ describe.skip('Mission Locations', function () {
     });
   });
 
-  after(function (done) {
-    Location.collection.remove(done);
-  });
-
   beforeEach(function (done) {
-    Mission.collection.remove(done);
+    Mission.collection.remove(function () {
+      Location.collection.remove(done);
+    });
   });
 
   describe('GET /api/missions/locations', function () {

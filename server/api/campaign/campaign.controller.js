@@ -2,6 +2,34 @@
 
 var _ = require('lodash');
 var Campaign = require('./campaign.model');
+var Mission = require('../mission/mission.model');
+
+
+exports.start = function (req, res) {
+
+  // todo lkan; populate is not working here for some reason
+  Campaign.findById(req.params.id).exec(function (err, campaign) {
+    if(err) { return handleError(res, err); }
+
+    var missions = campaign.locations.map(function (location) {
+      return {
+        address: location,
+        title: campaign.title,
+        state: 'active'
+      }
+    });
+
+    console.log('missions', missions, campaign)
+    Mission.create(missions, function (err) {
+      if(err){ return handleError(res, err)}
+      campaign.state = 'active';
+      campaign.save(function (err, updated) {
+        return res.json(200, updated);
+      });
+    });
+
+  });
+};
 
 // Get list of campaigns
 exports.index = function(req, res) {

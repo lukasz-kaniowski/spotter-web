@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var Location = require('../location/location.model');
 
 var TaskSchema = new Schema({title: String, type: String, data: {}});
 
@@ -11,7 +12,7 @@ var CampaignSchema = new Schema({
   dueDate: Date,
   startDate: Date,
   price: Number,
-  state: {type: String, enum: 'new active booked closed'.split(' '), default: 'new'},
+  state: {type: String, enum: 'new active closed'.split(' '), default: 'new'},
   instructions: String, //html
   tasks: [TaskSchema],
   locations: [{type: Schema.Types.ObjectId, ref: 'Location'}]

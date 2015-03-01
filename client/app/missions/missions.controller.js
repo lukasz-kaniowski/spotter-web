@@ -34,7 +34,7 @@ angular.module('spotterWebApp')
     });
 
     $scope.start = function () {
-      $http.patch('/api/campaigns/' + $stateParams.missionId + '/state', {state: 'active'}).then(function (response) {
+      $http.put('/api/campaigns/' + $stateParams.missionId + '/action/start').then(function (response) {
         $scope.mission = response.data;
       })
     };

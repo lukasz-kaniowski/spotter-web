@@ -10,14 +10,7 @@ var Mission = require('../api/mission/mission.model');
 var Location = require('../api/location/location.model');
 var Campaign = require('../api/campaign/campaign.model');
 
-Mission.find({}).remove(function() {
-  Mission.create({
-    title : 'Mission 1',
-    company : 'Tesco',
-    price: 10,
-    instructions: 'Zeby wykonac misje musisz wykonac 5 zadan. <br/> Powodzenia!'
-  });
-});
+Mission.find({}).remove();
 
 User.find({}).remove(function() {
   User.create({
@@ -43,5 +36,11 @@ Location.find({}).remove(function () {
 
 Campaign.find({}).remove(function () {
   console.log('Campaigns removed');
+  Campaign.create({
+    title : 'Mission 1',
+    company : 'Tesco',
+    price: 10,
+    instructions: 'Zeby wykonac misje musisz wykonac 5 zadan. <br/> Powodzenia!'
+  });
 });
 
