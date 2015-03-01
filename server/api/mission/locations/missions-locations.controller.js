@@ -30,6 +30,7 @@ function getBaseMissionInfo(mission, location) {
     title: mission.title,
     dueDate: mission.dueDate,
     price: mission.price,
+    state: mission.state,
     address: {
       coordinates: getCoordinates(location),
       id: location.id

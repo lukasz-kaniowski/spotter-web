@@ -85,7 +85,8 @@ describe('Mission Locations', function () {
                 },
                 "dueDate": '2015-02-21T16:33:21.000Z',
                 "tasks": [],
-                "price": mission.price
+                "price": mission.price,
+                "state": 'new'
               });
               done();
             });
@@ -127,7 +128,7 @@ describe('Mission Locations', function () {
   describe('GET /api/missions/:missionId/locations/:locationId', function () {
 
     it('should respond with a location of the mission', function (done) {
-      Mission.create({title: 'Some Mission', instructions: 'some instructions', locations: locations})
+      Mission.create({title: 'Some Mission', instructions: 'some instructions',state: 'active', locations: locations})
         .then(function (mission) {
           request(app)
             .get('/api/missions/' + mission.id + '/locations/' + locations[1].id)
@@ -139,6 +140,7 @@ describe('Mission Locations', function () {
               res.body.title.should.be.equal(mission.title);
               res.body.address.id.should.be.equal(locations[1].id);
               res.body.instructions.should.be.equal(mission.instructions);
+              res.body.state.should.be.equal(mission.state);
               done();
             });
 
