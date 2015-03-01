@@ -15,10 +15,11 @@ module.exports = function(app) {
 
 
   // Insert routes below
+  app.use('/api/campaigns/:campaignId/locations', passPrimaryParams);
+  app.use('/api/campaigns/:campaignId/locations', require('./api/campaign/location'));
+  app.use('/api/campaigns', require('./api/campaign'));
   app.use('/api/locations', require('./api/location'));
   app.use('/api/missions', require('./api/mission'));
-  app.use('/api/missions/:missionId/locations', passPrimaryParams);
-  app.use('/api/missions/:missionId/locations', require('./api/mission/location'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));

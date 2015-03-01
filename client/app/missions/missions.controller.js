@@ -3,7 +3,7 @@
 angular.module('spotterWebApp')
   .controller('MissionsCtrl', function ($scope, $http) {
 
-    $http.get('/api/missions').then(function (response) {
+    $http.get('/api/campaigns').then(function (response) {
       console.log(response);
       $scope.missions = response.data;
     });
@@ -15,7 +15,7 @@ angular.module('spotterWebApp')
     };
 
     $scope.create = function () {
-      $http.post('/api/missions', $scope.newMission).then(function () {
+      $http.post('/api/campaigns', $scope.newMission).then(function () {
         $state.go('missions');
       });
     };
@@ -28,19 +28,19 @@ angular.module('spotterWebApp')
   })
   .controller('MissionDetailsCtrl', function ($scope, $http, $stateParams, $state) {
 
-    $http.get('/api/missions/' + $stateParams.missionId).then(function (response) {
+    $http.get('/api/campaigns/' + $stateParams.missionId).then(function (response) {
       console.log(response);
       $scope.mission = response.data;
     });
 
     $scope.start = function () {
-      $http.patch('/api/missions/' + $stateParams.missionId + '/state', {state: 'active'}).then(function (response) {
+      $http.patch('/api/campaigns/' + $stateParams.missionId + '/state', {state: 'active'}).then(function (response) {
         $scope.mission = response.data;
       })
     };
 
     $scope.delete = function () {
-      $http.delete('/api/missions/' + $stateParams.missionId).then(function () {
+      $http.delete('/api/campaigns/' + $stateParams.missionId).then(function () {
         $state.go('missions');
       })
     };

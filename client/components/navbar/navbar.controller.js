@@ -4,7 +4,7 @@ angular.module('spotterWebApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [
       {
-        title: 'Misje',
+        title: 'Kampanie',
         link: '/missions'
       },
       {

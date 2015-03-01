@@ -8,6 +8,7 @@
 var User = require('../api/user/user.model');
 var Mission = require('../api/mission/mission.model');
 var Location = require('../api/location/location.model');
+var Campaign = require('../api/campaign/campaign.model');
 
 Mission.find({}).remove(function() {
   Mission.create({
@@ -39,3 +40,8 @@ User.find({}).remove(function() {
 Location.find({}).remove(function () {
   console.log('Locations removed');
 });
+
+Campaign.find({}).remove(function () {
+  console.log('Campaigns removed');
+});
+

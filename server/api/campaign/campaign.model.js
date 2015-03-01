@@ -1,11 +1,11 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 var TaskSchema = new Schema({title: String, type: String, data: {}});
 
-var MissionSchema = new Schema({
+var CampaignSchema = new Schema({
   title: String,
   company: String,
   dueDate: Date,
@@ -14,11 +14,7 @@ var MissionSchema = new Schema({
   state: {type: String, enum: 'new active booked closed'.split(' '), default: 'new'},
   instructions: String, //html
   tasks: [TaskSchema],
-  // todo lkan; adres musi byc lista lokacji
-  address: {
-    coordinates: []
-  }
+  locations: [{type: Schema.Types.ObjectId, ref: 'Location'}]
 });
-MissionSchema.index({address: {coordinates: '2d'}});
 
-module.exports = mongoose.model('Mission', MissionSchema);
+module.exports = mongoose.model('Campaign', CampaignSchema);

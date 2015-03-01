@@ -7,7 +7,7 @@ var Mission = require('../mission.model');
 var Location = require('../../location/location.model');
 var AuthHelper = require('../../../auth/auth.spec.helper');
 
-describe('Mission Locations', function () {
+describe.skip('Mission Locations', function () {
   var token;
   var locations;
 
