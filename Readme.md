@@ -56,3 +56,36 @@ Database migration
 -------------------
 
     $ cd dist; heroku run migrate up
+    
+Database model 
+===============
+
+Campaign
+--------
+
+Campaign represents a sets of mission of similar type.
+
+Relations:
+
+* has many locations
+* has many missions
+ 
+Location
+--------
+
+Location represents a physical address
+
+Relations:
+
+* belongs to many campaigns
+
+Mission
+--------
+
+Mission is combination of location and campaign. Missions are created when admin is starting a campaign.
+ 
+Relations:
+
+* has one location
+* belongs to one campaign
+

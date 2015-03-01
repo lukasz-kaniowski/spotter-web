@@ -11,6 +11,7 @@ router.use(auth.isAuthenticated());
 
 router.get('/locations', missionLocationsController.index);
 router.get('/:missionId/locations/:locationId', missionLocationsController.show);
+
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);

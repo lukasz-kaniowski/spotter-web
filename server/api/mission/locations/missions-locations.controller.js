@@ -37,11 +37,24 @@ function getBaseMissionInfo(mission, location) {
     }
   }
 }
-function getMissionDetailsInfo(mission, location) {
+function formatMissionDetailsInfo(mission, location) {
   return _.merge(getBaseMissionInfo(mission, location),
     {
       instructions: mission.instructions
     });
+}
+
+function findMissionLocation(missionId, locationId, cb) {
+  Mission.findById(missionId).populate('locations').exec(function (err, mission) {
+    if(err) { return cb(err); }
+    if(!mission) { return cb() }
+
+    var location = _.find(mission.locations, {'id': locationId});
+    if(!location) { return cb()  }
+
+    return cb(null, {mission: mission, location: location});
+  });
+
 }
 
 exports.index = function (req, res) {
@@ -56,19 +69,14 @@ exports.index = function (req, res) {
 };
 
 exports.show = function(req, res) {
-  Mission.findById(req.params.missionId).populate('locations').exec(function (err, mission) {
+  findMissionLocation(req.params.missionId, req.params.locationId, function (err, result) {
     if(err) { return handleError(res, err); }
-    if(!mission) { return res.send(404); }
+    if(!result) { return res.send(404); }
 
-    var location = _.find(mission.locations, {'id': req.params.locationId});
-    //console.log(location, mission, req.params)
-    if(!location) { return res.send(404); }
-
-    var body = getMissionDetailsInfo(mission, location);
+    var body = formatMissionDetailsInfo(result.mission, result.location);
     return res.json(body);
   });
 };
-
 
 
 function handleError(res, err) {

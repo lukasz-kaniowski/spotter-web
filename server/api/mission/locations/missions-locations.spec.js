@@ -148,4 +148,24 @@ describe('Mission Locations', function () {
     });
   });
 
+  describe.skip('Booking a mission: PUT /api/missions/:missionId/locations/:locationId/book', function () {
+
+    it('should change a state of active mission to `booked`', function (done) {
+      Mission.create({title: 'Some Mission', instructions: 'some instructions', state: 'active', locations: locations})
+        .then(function (mission) {
+          request(app)
+            .get('/api/missions/' + mission.id + '/locations/' + locations[1].id + '/book')
+            .set('authorization', 'Bearer ' + token)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function (err, res) {
+              if (err) return done(err);
+              res.body.state.should.be.equal('booked');
+              done();
+            });
+
+        })
+    });
+  });
+
 });
