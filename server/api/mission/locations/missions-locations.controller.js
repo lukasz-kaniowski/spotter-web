@@ -17,13 +17,13 @@ function formatMissionsWithLocations(missionsWithLocations) {
   var data = [];
   missionsWithLocations.forEach(function (mission) {
     mission.locations.forEach(function (location) {
-      data.push(formatMissionsWithLocation(mission, location));
+      data.push(getBaseMissionInfo(mission, location));
     })
   });
   return data;
 }
 
-function formatMissionsWithLocation(mission, location) {
+function getBaseMissionInfo(mission, location) {
   return {
     id: mission.id,
     tasks: mission.tasks,
@@ -35,6 +35,12 @@ function formatMissionsWithLocation(mission, location) {
       id: location.id
     }
   }
+}
+function getMissionDetailsInfo(mission, location) {
+  return _.merge(getBaseMissionInfo(mission, location),
+    {
+      instructions: mission.instructions
+    });
 }
 
 exports.index = function (req, res) {
@@ -57,7 +63,7 @@ exports.show = function(req, res) {
     //console.log(location, mission, req.params)
     if(!location) { return res.send(404); }
 
-    var body = formatMissionsWithLocation(mission, location);
+    var body = getMissionDetailsInfo(mission, location);
     return res.json(body);
   });
 };
