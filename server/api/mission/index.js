@@ -3,12 +3,14 @@
 var express = require('express');
 var controller = require('./mission.controller');
 var auth = require('../../auth/auth.service');
+var missionLocationsController = require('./locations/missions-locations.controller');
 
 var router = express.Router();
 
 router.use(auth.isAuthenticated());
 
-router.get('/locations', require('./locations/missions-locations.controller').index);
+router.get('/locations', missionLocationsController.index);
+router.get('/:missionId/locations/:locationId', missionLocationsController.show);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
