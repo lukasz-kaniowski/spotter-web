@@ -2,7 +2,6 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-var Location = require('../location/location.model');
 
 var TaskSchema = new Schema({title: String, type: String, data: {}});
 

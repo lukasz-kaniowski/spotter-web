@@ -8,7 +8,7 @@ var Mission = require('../mission/mission.model');
 exports.start = function (req, res) {
 
   // todo lkan; populate is not working here for some reason
-  Campaign.findById(req.params.id).exec(function (err, campaign) {
+  Campaign.findById(req.params.id).populate('locations').exec(function (err, campaign) {
     if(err) { return handleError(res, err); }
 
     var missions = campaign.locations.map(function (location) {
@@ -19,7 +19,6 @@ exports.start = function (req, res) {
       }
     });
 
-    console.log('missions', missions, campaign)
     Mission.create(missions, function (err) {
       if(err){ return handleError(res, err)}
       campaign.state = 'active';

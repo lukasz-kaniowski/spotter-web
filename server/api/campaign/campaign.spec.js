@@ -14,23 +14,22 @@ describe('Campaigns', function () {
   before(function (done) {
     AuthHelper.initUser(function (user, tokenRes) {
       token = tokenRes;
-      Location.create({name: 'location1'}, {
-        name: 'location2',
-        geoData: [{"longitude": 20.71639, "latitude": 49.596436}]
-      })
-        .then(function (loc1, loc2) {
-          locations = [loc1, loc2];
-          done();
-        }, done);
-
+      Location.collection.remove(function () {
+        Location.create({name: 'location1'}, {
+          name: 'location2',
+          geoData: [{"longitude": 20.71639, "latitude": 49.596436}]
+        })
+          .then(function (loc1, loc2) {
+            locations = [loc1, loc2];
+            done();
+          }, done);
+      });
     });
   });
 
   beforeEach(function (done) {
     Campaign.collection.remove(function () {
-      Location.collection.remove(function () {
-        Mission.collection.remove(done);
-      });
+      Mission.collection.remove(done);
     });
   });
 
