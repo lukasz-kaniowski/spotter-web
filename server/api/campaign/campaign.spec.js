@@ -1,6 +1,6 @@
 'use strict';
 
-var should = require('should');
+var should = require('chai').should();
 var app = require('../../app');
 var request = require('supertest');
 var AuthHelper = require('../../auth/auth.spec.helper');
@@ -10,14 +10,17 @@ var Mission = require('../mission/mission.model');
 
 describe('Campaigns', function () {
   var token, locations;
+  var longitude = 20.71639;
+  var latitude = 49.596436;
 
   before(function (done) {
     AuthHelper.initUser(function (user, tokenRes) {
       token = tokenRes;
       Location.collection.remove(function () {
+
         Location.create({name: 'location1'}, {
           name: 'location2',
-          geoData: [{"longitude": 20.71639, "latitude": 49.596436}]
+          geoData: [{"longitude": longitude, "latitude": latitude}]
         })
           .then(function (loc1, loc2) {
             locations = [loc1, loc2];
@@ -53,7 +56,6 @@ describe('Campaigns', function () {
 
     it('should create missions for each of the location', function (done) {
       Campaign.create({title: 'Some campaign', locations: locations}).then(function (campaign) {
-        console.log(campaign)
         request(app)
           .put('/api/campaigns/' + campaign.id + '/action/start')
           .set('authorization', 'Bearer ' + token)
@@ -63,8 +65,13 @@ describe('Campaigns', function () {
             if (err) return done(err);
             res.body.state.should.be.equal('active');
 
-            Mission.find({}, function (err, missions) {
+            Mission.find({}).exec(function (err, missions) {
               missions.length.should.be.equal(2);
+              missions[1].should.have.property('title', campaign.title);
+
+              // todo lkan; fix below, probably objectId
+              //missions[1].should.have.property('address', { coordinates: [latitude, longitude], id: locations[1].id});
+              missions[1].should.have.property('state', 'active');
             });
 
             done();

@@ -4,27 +4,22 @@ var _ = require('lodash');
 var Campaign = require('./campaign.model');
 var Mission = require('../mission/mission.model');
 
+var campaignMissionFactory = require('../mission/campaign-mission.factory');
+
 
 exports.start = function (req, res) {
 
-  // todo lkan; populate is not working here for some reason
   Campaign.findById(req.params.id).populate('locations').exec(function (err, campaign) {
-    if(err) { return handleError(res, err); }
-
-    var missions = campaign.locations.map(function (location) {
-      return {
-        address: location,
-        title: campaign.title,
-        state: 'active'
-      }
-    });
-
-    Mission.create(missions, function (err) {
-      if(err){ return handleError(res, err)}
+    if (err) {
+      return handleError(res, err);
+    }
+    campaignMissionFactory.createMissions(campaign).then(function () {
       campaign.state = 'active';
       campaign.save(function (err, updated) {
         return res.json(200, updated);
       });
+    }).onReject(function (err) {
+      return handleError(res, err);
     });
 
   });
@@ -82,5 +77,6 @@ exports.destroy = function(req, res) {
 };
 
 function handleError(res, err) {
+  console.log(err);
   return res.send(500, err);
 }

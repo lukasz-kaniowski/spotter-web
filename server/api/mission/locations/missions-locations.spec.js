@@ -1,6 +1,6 @@
 'use strict';
 
-var should = require('should');
+var should = require('chai').should();
 var app = require('../../../app');
 var request = require('supertest');
 var Mission = require('../mission.model');

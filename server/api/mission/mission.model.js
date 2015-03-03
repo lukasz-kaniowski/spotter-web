@@ -11,13 +11,14 @@ var MissionSchema = new Schema({
   dueDate: Date,
   startDate: Date,
   price: Number,
-  state: {type: String, enum: 'new active booked closed'.split(' '), default: 'new'},
+  state: {type: String, enum: 'active booked closed'.split(' ')},
   instructions: String, //html
   tasks: [TaskSchema],
-  // todo lkan; adres musi byc lista lokacji
   address: {
-    coordinates: []
-  }
+    coordinates: [Number],
+    id: String
+  },
+  _campaign: { type: Schema.Types.ObjectId, ref: 'Campaign' }
 });
 MissionSchema.index({address: {coordinates: '2d'}});
 
