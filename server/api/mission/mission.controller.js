@@ -74,6 +74,19 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.book = function (req, res) {
+  Mission.findById(req.params.id, function (err, mission) {
+    if(err) { return handleError(res, err); }
+    if(!mission) { return res.send(404); }
+    mission.state = 'booked';
+    mission._user = req.user;
+    mission.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, mission);
+    })
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }

@@ -18,7 +18,8 @@ var MissionSchema = new Schema({
     coordinates: [Number],
     id: String
   },
-  _campaign: { type: Schema.Types.ObjectId, ref: 'Campaign' }
+  _campaign: { type: Schema.Types.ObjectId, ref: 'Campaign' },
+  _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 MissionSchema.index({address: {coordinates: '2d'}});
 
