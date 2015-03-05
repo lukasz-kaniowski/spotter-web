@@ -1,6 +1,7 @@
 'use strict';
 
 var should = require('chai').should();
+var expect = require('chai').expect;
 var app = require('../../app');
 var request = require('supertest');
 var Mission = require('./mission.model');
@@ -87,5 +88,52 @@ describe('Missions Api', function () {
 
     });
   });
+
+  describe('Decline a mission: DELETE /api/missions/:missionId/book', function () {
+    var mission;
+
+    beforeEach(function (done) {
+      Mission.create({
+        title: 'Some Mission',
+        instructions: 'some instructions',
+        state: 'booked',
+        _user: user
+      }).then(function (result) {
+        mission = result;
+        done()
+      }).onReject(done);
+    });
+
+    it('should change a state of `booked` mission to `active`', function (done) {
+      request(app)
+        .delete('/api/missions/' + mission.id + '/book')
+        .set('authorization', 'Bearer ' + token)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function (err, res) {
+          if (err) return done(err);
+          res.body.state.should.be.equal('active');
+          done();
+        });
+    });
+
+    it('should unassign user', function (done) {
+      request(app)
+        .delete('/api/missions/' + mission.id + '/book')
+        .set('authorization', 'Bearer ' + token)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function (err, res) {
+          if (err) return done(err);
+          Mission.findById(mission.id).exec().then(function (mission) {
+            expect(mission._user).to.be.equal(undefined);
+            done();
+          }).onReject(done);
+
+        });
+
+    });
+  });
+
 
 });
