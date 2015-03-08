@@ -101,5 +101,8 @@ exports.decline = function (req, res) {
 };
 
 function handleError(res, err) {
+  if(err && err.name === 'ValidationError') {
+    return res.json(400, err);
+  }
   return res.send(500, err);
 }

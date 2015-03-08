@@ -42,6 +42,34 @@ describe('Missions Api', function () {
 
         })
     });
+    it('should filter missions by `state`', function (done) {
+      Mission.create({title: 'Active', state: 'active'}, {title: 'Booked', state: 'booked'})
+        .then(function (mission1, mission2) {
+          request(app)
+            .get('/api/missions?state=active')
+            .set('authorization', 'Bearer ' + token)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function (err, res) {
+              if (err) return done(err);
+              res.body.should.be.instanceof(Array);
+              res.body.length.should.be.equal(1);
+              res.body[0].title.should.be.equal('Active');
+              done();
+            });
+        });
+    });
+    ['state1', 'title', 'price'].forEach(function (param) {
+      it('should return 400 if unknown parameter is passed, param=' + param, function (done) {
+        request(app)
+          .get('/api/missions?' + param)
+          .set('authorization', 'Bearer ' + token)
+          .expect(400)
+          .expect('Content-Type', /json/)
+          .end(done);
+      });
+
+    });
   });
 
   describe('Booking a mission: PUT /api/missions/:missionId/book', function () {
