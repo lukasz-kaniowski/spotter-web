@@ -16,6 +16,13 @@ exports.index = function(req, res) {
   });
 };
 
+exports.listForUser = function(req, res) {
+  Mission.find({_user: req.user}, function (err, missions) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, missions);
+  });
+};
+
 // Get a single mission
 exports.show = function(req, res) {
   Mission.findById(req.params.id, function (err, mission) {

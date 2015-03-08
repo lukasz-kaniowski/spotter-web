@@ -10,6 +10,7 @@ router.use(auth.isAuthenticated());
 
 router.put('/:id/book', controller.book);
 router.delete('/:id/book', controller.decline);
+router.get('/me', controller.listForUser);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);

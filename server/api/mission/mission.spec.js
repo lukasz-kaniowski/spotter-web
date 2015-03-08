@@ -163,5 +163,30 @@ describe('Missions Api', function () {
     });
   });
 
+  describe('Missions assign to user: GET /api/missions/me', function () {
+
+    it.only('should return all of the missions assign to user', function (done) {
+      Mission.create(
+        {title: 'Active', state: 'active', _user: user},
+        {title: 'Booked', state: 'booked', _user: user},
+        {title: 'Active not assigned', state: 'active'}
+      ).then(function (mission1, mission2, mission3) {
+          request(app)
+            .get('/api/missions/me')
+            .set('authorization', 'Bearer ' + token)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function (err, res) {
+              if (err) return done(err);
+              res.body.should.be.instanceof(Array);
+              res.body.length.should.be.equal(2);
+              res.body[0].title.should.be.equal(mission1.title);
+              res.body[1].title.should.be.equal(mission2.title);
+              done();
+            });
+        });
+    });
+  });
+
 
 });
