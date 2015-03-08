@@ -2,7 +2,7 @@
 
 angular.module('spotterWebApp')
 
-  .controller('MissionLocationsCtrl', function ($scope, $http, $stateParams) {
+  .controller('MissionLocationsCtrl', function ($scope, $http, $stateParams, $state) {
 
     $http.get('/api/locations/').then(function (response) {
       console.log(response);
@@ -19,7 +19,7 @@ angular.module('spotterWebApp')
     $scope.save = function () {
       var body = {locations: $scope.mission.locations};
       $http.post('/api/campaigns/'+$stateParams.missionId +'/locations', body).then(function (response) {
-        console.log(response);
+        $state.go('missionDetails', {missionId: $scope.mission._id});
       })
     }
   })
