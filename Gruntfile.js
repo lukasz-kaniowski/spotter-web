@@ -1,5 +1,6 @@
 // Generated on 2015-01-19 using generator-angular-fullstack 2.0.13
 'use strict';
+var projectConf = require('./project.conf');
 
 module.exports = function (grunt) {
   var localConfig;
@@ -390,7 +391,7 @@ module.exports = function (grunt) {
       },
       heroku: {
         options: {
-          remote: 'heroku',
+          remote: projectConf.deployment.heroku.remoteGit,
           branch: 'master'
         }
       },
