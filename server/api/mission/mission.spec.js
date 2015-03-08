@@ -165,7 +165,7 @@ describe('Missions Api', function () {
 
   describe('Missions assign to user: GET /api/missions/me', function () {
 
-    it.only('should return all of the missions assign to user', function (done) {
+    it('should return all of the missions assign to user', function (done) {
       Mission.create(
         {title: 'Active', state: 'active', _user: user},
         {title: 'Booked', state: 'booked', _user: user},
