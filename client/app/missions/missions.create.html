@@ -8,22 +8,26 @@
     <h2>Nowa kampania</h2>
 
     <p class="input-group">
+
     <h3>Opis</h3>
-      <input type="text" class="form-control" placeholder="Tytul" ng-model="newMission.title">
-      <input type="text" class="form-control" placeholder="Firma" ng-model="newMission.company">
-      <input type="number" class="form-control" placeholder="Cena" ng-model="newMission.price">
-      <div text-angular ng-model="newMission.instructions"></div>
+    <input type="text" class="form-control" placeholder="Tytul" ng-model="newMission.title">
+    <input type="text" class="form-control" placeholder="Firma" ng-model="newMission.company">
+    <input type="number" class="form-control" placeholder="Cena" ng-model="newMission.price">
+    <input type="date" ng-model="newMission.dueDate" placeholder="Data">
+
+    <div text-angular ng-model="newMission.instructions"></div>
     </p>
 
     <p>
-      <h3>Zadania</h3>
-      <ul>
-        <li ng-repeat="task in newMission.tasks">{{task.type}} {{task.title}}</li>
-      </ul>
-      <div>
 
-        <button type="button" class="btn btn-success" ng-click="addTask()">Dodaj nowe zadanie</button>
-      </div>
+    <h3>Zadania</h3>
+    <ul>
+      <li ng-repeat="task in newMission.tasks">{{task.type}} {{task.title}}</li>
+    </ul>
+    <div>
+
+      <button type="button" class="btn btn-success" ng-click="addTask()">Dodaj nowe zadanie</button>
+    </div>
 
 
     </p>
