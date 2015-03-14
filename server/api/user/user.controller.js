@@ -26,7 +26,6 @@ exports.index = function(req, res) {
 exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
-  newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
@@ -76,6 +75,16 @@ exports.changePassword = function(req, res, next) {
     } else {
       res.send(403);
     }
+  });
+};
+
+exports.changeRole = function (req, res, next) {
+  User.findById(req.user.id, function (err, user) {
+    user.role = req.body.role;
+    user.save(function (err) {
+      if (err) return validationError(res, err);
+      res.send(200, user.toJSON());
+    });
   });
 };
 

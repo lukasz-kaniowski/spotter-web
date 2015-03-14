@@ -60,6 +60,16 @@
           </p>
         </div>
 
+        <div class="form-group">
+          <label>Role</label>
+
+          <select ng-model="user.role">
+            <option ng-repeat="role in roles" value="{{role.value}}">{{role.label}}</option>
+          </select>
+
+
+        </div>
+
         <div>
           <button class="btn btn-primary" type="submit">
             Zapisz

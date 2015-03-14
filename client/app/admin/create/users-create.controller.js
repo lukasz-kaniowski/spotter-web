@@ -2,8 +2,14 @@
 
 angular.module('spotterWebApp')
   .controller('UserCreateCtrl', function ($scope, User, $location, $window) {
-    $scope.user = {};
+    $scope.user = {
+      role: 'user'
+    };
     $scope.errors = {};
+    $scope.roles = [
+      {value: 'user', label: 'Uzytkownik'},
+      {value: 'admin', label: 'Administrator'}
+    ];
 
     $scope.save = function (form) {
       $scope.submitted = true;
@@ -13,7 +19,8 @@ angular.module('spotterWebApp')
         User.save({
             name: $scope.user.name,
             email: $scope.user.email,
-            password: $scope.user.password
+            password: $scope.user.password,
+            role: $scope.user.role
           },
           function (data) {
             $location.path('/admin');
