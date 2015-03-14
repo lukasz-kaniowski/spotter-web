@@ -5,11 +5,13 @@ angular.module('spotterWebApp')
     $scope.menu = [
       {
         title: 'Kampanie',
-        link: '/missions'
+        link: '/missions',
+        show: Auth.isAdmin
       },
       {
         title: 'Lokacje',
-        link: '/locations'
+        link: '/locations',
+        show: Auth.isAdmin
       }
     ];
 

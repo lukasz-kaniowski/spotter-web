@@ -5,13 +5,14 @@ var request = require('supertest');
 
 exports.initUser = function (cb) {
   User.remove(function () {
-    var user = new User({
+    var admin = new User({
       name: 'Fake User',
       email: 'test@test.com',
-      password: 'password'
+      password: 'password',
+      role: 'admin'
     });
 
-    user.save(function (err, user) {
+    admin.save(function (err, user) {
       if (err) return done(err);
       request(app)
         .post('/auth/local')

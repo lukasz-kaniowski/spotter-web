@@ -5,7 +5,7 @@ var controller = require('./location.controller');
 var auth = require('../../auth/auth.service');
 
 var router = express.Router();
-router.use(auth.isAuthenticated());
+router.use(auth.isAdmin());
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
