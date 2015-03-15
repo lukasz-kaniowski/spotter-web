@@ -26,6 +26,10 @@ angular.module('spotterWebApp')
     };
 
     $scope.isActive = function (route) {
-      return route === $location.path();
+      return startsWith($location.path(), route);
     };
+
+    function startsWith(text, textWith){
+      return text.indexOf(textWith) === 0;
+    }
   });
