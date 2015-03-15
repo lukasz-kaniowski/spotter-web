@@ -5,12 +5,35 @@ var Mission = require('./mission.model');
 var Joi = require('joi');
 var validations = require('./mission.validations');
 
+function buildListQuery(params) {
+  var query = _.merge({}, params);
+
+  if(query.location){
+    var locationArray = query.location.split(',').map(parseFloat);
+
+    query['address.gps'] = {
+      $near: {
+        $geometry: {
+          'type': 'Point',
+          coordinates: locationArray
+        },
+        $maxDistance: 1000 * 10 //10km
+      }
+
+    };
+    delete query.location;
+  }
+  return query;
+}
 // Get list of missions
 exports.index = function(req, res) {
   Joi.validate(req.query, validations.listFilter, function (err, result) {
     if(err) { return handleError(res, err); }
   });
-  Mission.find(req.query, function (err, missions) {
+
+  var query = buildListQuery(req.query);
+
+  Mission.find(query, function (err, missions) {
     if(err) { return handleError(res, err); }
     return res.json(200, missions);
   });

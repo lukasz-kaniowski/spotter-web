@@ -9,6 +9,7 @@ function getCoordinates(location) {
 }
 
 function formatMissionDetailsInfo(campaign, location) {
+
   return {
     id: campaign.id,
     instructions: campaign.instructions,
@@ -19,7 +20,9 @@ function formatMissionDetailsInfo(campaign, location) {
     state: 'active',
     _campaign: campaign,
     address: {
-      coordinates: getCoordinates(location),
+      gps: {
+        coordinates: getCoordinates(location)
+      },
       id: location.id
     }
   };

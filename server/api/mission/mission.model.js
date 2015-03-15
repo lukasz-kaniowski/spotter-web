@@ -5,6 +5,13 @@ var mongoose = require('mongoose'),
 
 var TaskSchema = new Schema({title: String, type: String, data: {}});
 
+var GeoJsonPoint = {
+  'type': {type: String, default: "Point"},
+  coordinates: [
+    {type: "Number"}
+  ]
+};
+
 var MissionSchema = new Schema({
   title: String,
   company: String,
@@ -15,12 +22,20 @@ var MissionSchema = new Schema({
   instructions: String, //html
   tasks: [TaskSchema],
   address: {
-    coordinates: [Number],
+    gps: GeoJsonPoint,
     id: String
   },
-  _campaign: { type: Schema.Types.ObjectId, ref: 'Campaign' },
-  _user: { type: Schema.Types.ObjectId, ref: 'User' }
+  _campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
+  _user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
-MissionSchema.index({address: {coordinates: '2d'}});
+
+MissionSchema.index({'address.gps': '2dsphere'});
+
+MissionSchema.pre('save', function (next) {
+  if (this.isNew && Array.isArray(this.address.gps.coordinates) && 0 === this.address.gps.coordinates.length) {
+    this.address.gps = undefined;
+  }
+  next();
+});
 
 module.exports = mongoose.model('Mission', MissionSchema);

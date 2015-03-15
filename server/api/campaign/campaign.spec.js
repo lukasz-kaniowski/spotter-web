@@ -18,10 +18,15 @@ describe('Campaigns', function () {
       token = tokenRes;
       Location.collection.remove(function () {
 
-        Location.create({name: 'location1'}, {
-          name: 'location2',
-          geoData: [{"longitude": longitude, "latitude": latitude}]
-        })
+        Location.create(
+          {name: 'location1',
+            geoData: [{"longitude": longitude, "latitude": latitude}]
+          },
+          {
+            name: 'location2',
+            geoData: [{"longitude": longitude, "latitude": latitude}]
+          }
+        )
           .then(function (loc1, loc2) {
             locations = [loc1, loc2];
             done();

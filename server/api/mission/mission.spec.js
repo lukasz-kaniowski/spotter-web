@@ -24,24 +24,56 @@ describe('Missions Api', function () {
   });
 
   describe('GET /api/missions', function () {
-    it('should respond with JSON array', function (done) {
-      Mission.create({title: 'Some Mission'})
-        .then(function () {
-          request(app)
-            .get('/api/missions')
-            .set('authorization', 'Bearer ' + token)
-            .expect(200)
-            .expect('Content-Type', /json/)
-            .end(function (err, res) {
-              if (err) return done(err);
-              res.body.should.be.instanceof(Array);
-              res.body.length.should.be.equal(1);
-              res.body[0].title.should.be.equal('Some Mission');
-              done();
-            });
+    var mission1 = {
+      title: 'Warszawa1',
+      address: {
+        gps: {
+          type: 'Point',
+          coordinates: [52.249126, 20.995619]
+        }
+      }
+    };
+    var mission2 = {
+      title: 'Warszawa2',
+      address: {
+        gps: {
+          type: 'Point',
+          coordinates: [52.241348, 21.015532]
+        }
+      }
+    };
+    var mission3 = {
+      title: 'Grojec',
+      address: {
+        gps: {
+          type: 'Point',
+          coordinates: [51.851566, 20.877516]
+        }
+      }
+    };
 
-        })
+    beforeEach(function (done) {
+      Mission.create(mission1, mission2, mission3).then(function () {
+        done();
+      });
     });
+
+    it('should return mission close to location', function (done) {
+      request(app)
+        .get('/api/missions?location=52.238510,21.029093')
+        .set('authorization', 'Bearer ' + token)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function (err, res) {
+          if (err) return done(err);
+          res.body.should.be.instanceof(Array);
+          res.body.length.should.be.equal(2);
+          res.body[0].title.should.be.equal(mission2.title);
+          res.body[1].title.should.be.equal(mission1.title);
+          done();
+        });
+    });
+
     it('should filter missions by `state`', function (done) {
       Mission.create({title: 'Active', state: 'active'}, {title: 'Booked', state: 'booked'})
         .then(function (mission1, mission2) {
@@ -57,8 +89,9 @@ describe('Missions Api', function () {
               res.body[0].title.should.be.equal('Active');
               done();
             });
-        });
+        }).onReject(done);
     });
+
     ['state1', 'title', 'price'].forEach(function (param) {
       it('should return 400 if unknown parameter is passed, param=' + param, function (done) {
         request(app)

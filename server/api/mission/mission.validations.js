@@ -5,5 +5,6 @@ exports.statePatch = Joi.object().keys({
 });
 
 exports.listFilter = Joi.object().keys({
-  state: Joi.string().optional()
+  state: Joi.string().optional(),
+  location: Joi.string().regex(/^\d*.\d*,\d*.\d*$/).optional()
 });
