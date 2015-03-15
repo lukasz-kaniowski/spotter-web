@@ -7,7 +7,7 @@
       <h2 class="page-header">Misje</h2>
       <ul class="">
         <li ng-repeat="mission in missions">
-          {{mission.title}} {{ mission.address.gps.coordinates}} {{mission.state}}
+          {{mission.title}} {{ mission.address.gps.coordinates}} {{mission.state}} {{mission.address._location.csv.street}}
         </li>
       </ul>
     </div>

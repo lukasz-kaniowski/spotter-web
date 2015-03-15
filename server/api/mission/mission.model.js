@@ -23,7 +23,7 @@ var MissionSchema = new Schema({
   tasks: [TaskSchema],
   address: {
     gps: GeoJsonPoint,
-    id: String
+    _location: {type: Schema.Types.ObjectId, ref: 'Location'}
   },
   _campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
   _user: {type: Schema.Types.ObjectId, ref: 'User'}

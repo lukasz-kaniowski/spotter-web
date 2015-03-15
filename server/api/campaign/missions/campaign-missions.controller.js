@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Mission = require('../../mission/mission.model');
 
 exports.index = function(req, res) {
-  Mission.find({_campaign: req.params.id},function (err, missions) {
+  Mission.find({_campaign: req.params.id}).populate('address._location').exec(function (err, missions) {
     if(err) { return handleError(res, err); }
     return res.json(200, missions);
   });

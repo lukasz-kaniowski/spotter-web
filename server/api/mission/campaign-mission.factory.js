@@ -23,7 +23,7 @@ function formatMissionDetailsInfo(campaign, location) {
       gps: {
         coordinates: getCoordinates(location)
       },
-      id: location.id
+      _location: location
     }
   };
 }
