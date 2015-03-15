@@ -8,5 +8,5 @@ angular.module('spotterWebApp')
     //    templateUrl: 'app/main/main.html',
     //    controller: 'MainCtrl'
     //  });
-    $urlRouterProvider.when('/','/missions');
+    $urlRouterProvider.when('/','/campaigns');
   });

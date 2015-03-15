@@ -5,7 +5,7 @@ angular.module('spotterWebApp')
     $scope.menu = [
       {
         title: 'Kampanie',
-        link: '/missions',
+        link: '/campaigns',
         show: Auth.isAdmin
       },
       {

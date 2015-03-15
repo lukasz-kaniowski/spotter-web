@@ -10,19 +10,19 @@
     <p class="input-group">
 
     <h3>Opis</h3>
-    <input type="text" class="form-control" placeholder="Tytul" ng-model="newMission.title">
-    <input type="text" class="form-control" placeholder="Firma" ng-model="newMission.company">
-    <input type="number" class="form-control" placeholder="Cena" ng-model="newMission.price">
-    <input type="date" ng-model="newMission.dueDate" placeholder="Data">
+    <input type="text" class="form-control" placeholder="Tytul" ng-model="newCampaign.title">
+    <input type="text" class="form-control" placeholder="Firma" ng-model="newCampaign.company">
+    <input type="number" class="form-control" placeholder="Cena" ng-model="newCampaign.price">
+    <input type="date" ng-model="newCampaign.dueDate" placeholder="Data">
 
-    <div text-angular ng-model="newMission.instructions"></div>
+    <div text-angular ng-model="newCampaign.instructions"></div>
     </p>
 
     <p>
 
     <h3>Zadania</h3>
     <ul>
-      <li ng-repeat="task in newMission.tasks">{{task.type}} {{task.title}}</li>
+      <li ng-repeat="task in newCampaign.tasks">{{task.type}} {{task.title}}</li>
     </ul>
     <div>
 

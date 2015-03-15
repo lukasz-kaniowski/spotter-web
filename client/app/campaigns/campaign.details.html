@@ -10,29 +10,29 @@
     <div class="panel-body">
       <dl class="dl-horizontal">
         <dt>Tytul</dt>
-        <dd ng-bind="mission.title"></dd>
+        <dd ng-bind="campaign.title"></dd>
         <dt>Firma</dt>
-        <dd ng-bind="mission.company"></dd>
+        <dd ng-bind="campaign.company"></dd>
         <dt>Cena</dt>
-        <dd ng-bind="mission.price"></dd>
+        <dd ng-bind="campaign.price"></dd>
         <dt>Data zakonczenia</dt>
-        <dd ng-bind="mission.dueDate | date:'dd-MM-yyyy'"></dd>
+        <dd ng-bind="campaign.dueDate | date:'dd-MM-yyyy'"></dd>
         <dt>Status</dt>
-        <dd ng-bind="mission.state"></dd>
+        <dd ng-bind="campaign.state"></dd>
 
       </dl>
     </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">Instrukcje</div>
-    <div class="panel-body" ng-bind-html="mission.instructions">
+    <div class="panel-body" ng-bind-html="campaign.instructions">
     </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">Zadania</div>
     <div class="panel-body">
       <ul>
-        <li ng-repeat="task in mission.tasks">
+        <li ng-repeat="task in campaign.tasks">
           {{task.title}} {{task.type}}
         </li>
       </ul>
@@ -42,10 +42,10 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       Lokacje
-      <a class="pull-right" ui-sref="mission-locations({missionId: mission._id})"><i class="fa fa-edit"></i> </a>
+      <a class="pull-right" ui-sref="campaign-locations({campaignId: campaign._id})"><i class="fa fa-edit"></i> </a>
     </div>
     <div class="panel-body">
-      Podpietych {{mission.locations.length}} lokacji
+      Podpietych {{campaign.locations.length}} lokacji
     </div>
   </div>
 

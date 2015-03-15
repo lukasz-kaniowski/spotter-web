@@ -5,7 +5,7 @@ angular.module('spotterWebApp')
     var modalOptions = {
       controller: 'TasksCreateCtrl',
       controllerAs: 'tasksCreateCtrl',
-      templateUrl: 'app/missions/tasks/tasks.create.html'
+      templateUrl: 'app/campaigns/tasks/tasks.create.html'
     };
 
     return {

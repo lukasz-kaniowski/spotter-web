@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: MissionsCtrl', function () {
+describe('Controller: CampaignsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('spotterWebApp'));
 
-  var MissionsCtrl, scope;
+  var CampaignsCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MissionsCtrl = $controller('MissionsCtrl', {
+    CampaignsCtrl = $controller('CampaignsCtrl', {
       $scope: scope
     });
   }));

@@ -7,13 +7,13 @@
     <div class="col-lg-12">
       <h2 class="page-header">Kampanie</h2>
       <ul class="" >
-        <li ng-repeat="mission in missions">
-          <a ui-sref="missionDetails({missionId: mission._id})">{{mission.title}}{{mission.price}}{{mission.dueDate}}{{mission.state}}</a>
+        <li ng-repeat="campaign in campaigns">
+          <a ui-sref="campaignDetails({campaignId: campaign._id})">{{campaign.title}}{{campaign.price}}{{campaign.dueDate}}{{campaign.state}}</a>
         </li>
       </ul>
     </div>
   </div>
-  <a class="btn btn-primary btn-block" ui-sref="missionsCreate" >Dodaj Kampanie</a>
+  <a class="btn btn-primary btn-block" ui-sref="campaignsCreate" >Dodaj Kampanie</a>
 </div>
 
 <div ng-include="'components/footer/footer.html'"></div>
