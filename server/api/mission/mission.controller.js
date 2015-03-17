@@ -77,6 +77,42 @@ exports.update = function(req, res) {
   });
 };
 
+function mergeTasks(tasks, body) {
+  if(tasks.length != body.length){
+    throw new Error('Wrong number passed tasks');
+  }
+  tasks.forEach(function (task) {
+    var taskAnswer = _.find(body, {id: task.id});
+    if (!taskAnswer) {
+      throw new Error('Task with given id not found');
+    }
+    task.data = taskAnswer.data;
+  });
+  return tasks;
+}
+
+exports.patchTasks = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  Mission.findById(req.params.id, function (err, mission) {
+    if (err) { return handleError(res, err); }
+    if(!mission) { return res.send(404); }
+
+    try{
+      var tasks = mergeTasks(mission.tasks, req.body);
+    } catch(e){
+      return res.json(400, {error: e.message});
+    }
+
+    mission.tasks = tasks;
+    mission.state = 'review';
+    mission.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, mission);
+    });
+  });
+};
+
+
 exports.patchState = function (req, res) {
   Joi.validate(req.body, validations.statePatch, function (err, result) {
     if(err) { return handleError(res, err); }

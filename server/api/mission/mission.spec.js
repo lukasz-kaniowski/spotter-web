@@ -221,5 +221,78 @@ describe('Missions Api', function () {
     });
   });
 
+  describe('Sending Task Answers: PATCH /api/missions/:missionId/tasks', function () {
+
+    var mission1;
+
+    beforeEach(function (done) {
+      Mission.create(
+        {title: 'Mission1', tasks: [{type: 'text', title: 'SomeText'}, {type: 'text', title: 'SomeText'}]}
+      ).then(function (mission) {
+          mission1 = mission;
+          done();
+        }).onReject(done)
+    });
+
+    it('should store answers against tasks', function (done) {
+      request(app)
+        .patch('/api/missions/' + mission1._id + '/tasks')
+        .set('authorization', 'Bearer ' + token)
+        .send([
+          {
+            "data": {
+              "answer": "Some answer from the user"
+            },
+            "id": mission1.tasks[0]._id
+          },
+          {
+            "data": {
+              "answer": "Answer for the second question"
+            },
+            "id": mission1.tasks[1]._id
+          }
+        ])
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function (err, res) {
+          if (err) return done(err);
+
+          res.body.tasks[0].data.answer.should.be.equal('Some answer from the user');
+          res.body.tasks[1].data.answer.should.be.equal('Answer for the second question');
+          res.body.state.should.equal('review');
+          done();
+        });
+    });
+
+    [
+      {
+        name: 'should return 400 if send to many tasks',
+        body: [{}, {}, {}]
+      },
+      {
+        name: 'should return 400 if send to little tasks',
+        body: [{}]
+      },
+      {
+        name: 'should return 400 if task with id not found',
+        body: [{"id": 'wrong_id'},{}]
+      }
+
+    ].forEach(function (s) {
+        it(s.name, function (done) {
+          request(app)
+            .patch('/api/missions/' + mission1._id + '/tasks')
+            .set('authorization', 'Bearer ' + token)
+            .send(s.body)
+            .expect(400)
+            .expect('Content-Type', /json/)
+            .end(done);
+        });
+      });
+
+  });
+
+
+
 
 });

@@ -18,7 +18,7 @@ var MissionSchema = new Schema({
   dueDate: Date,
   startDate: Date,
   price: Number,
-  state: {type: String, enum: 'active booked closed'.split(' ')},
+  state: {type: String, enum: 'active review booked closed'.split(' ')},
   instructions: String, //html
   tasks: [TaskSchema],
   address: {
