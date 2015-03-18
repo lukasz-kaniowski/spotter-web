@@ -2,6 +2,7 @@
 
 var express = require('express');
 var controller = require('./mission.controller');
+var uploadController = require('./upload/mission-upload.controller');
 var auth = require('../../auth/auth.service');
 
 var router = express.Router();
@@ -20,6 +21,8 @@ router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
 router.patch('/:id/state', controller.patchState);
+
+router.get('/:missionId/tasks/:taskId/upload', uploadController.uploadPolicy);
 
 
 module.exports = router;

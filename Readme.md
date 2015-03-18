@@ -11,6 +11,10 @@ Deployment
 
 Application is hosted in heroku. [https://ukache-spotters-web.herokuapp.com/](https://ukache-spotters-web.herokuapp.com/)
 
+Need to add env variables:
+AWS_ACCESS_KEY=""
+AWS_SECRET_KEY=""
+
 To deploy
 
     $ grunt build
