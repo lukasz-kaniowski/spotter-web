@@ -21,6 +21,7 @@ module.exports = function(app) {
   app.use('/api/locations', require('./api/location'));
   app.use('/api/missions', require('./api/mission'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/test', require('./api/test'));
 
   app.use('/auth', require('./auth'));
 
